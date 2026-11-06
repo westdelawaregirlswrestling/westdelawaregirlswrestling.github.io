@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>History · West Delaware Girls Wrestling</title>
+<meta name="description" content="West Delaware girls wrestling varsity record board, state qualifiers, conference champions and dual meet records.">
+<link rel="icon" href="favicon.png"><link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@700;800&family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
+<style>
+.tabs{display:flex;justify-content:center;margin:24px 0 18px}
+.tabs button{font:700 18px var(--f-head);text-transform:uppercase;letter-spacing:1px;border:2px solid var(--k);background:#fff;padding:8px 22px;cursor:pointer}
+.tabs button.on{background:var(--o);border-color:var(--o);color:#fff}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.cd{border:2px solid var(--k);display:flex;flex-direction:column}
+.cd .c{background:var(--k);color:#fff;font:700 15px var(--f-cond);letter-spacing:2px;text-transform:uppercase;padding:6px 10px;border-bottom:4px solid var(--o)}
+.cd .v{font:800 56px/1 var(--f-head);color:var(--o);padding:12px 12px 2px}
+.cd .nm{font:700 21px/1.15 var(--f-cond);padding:0 12px}
+.cd .ss{font:500 14px var(--f-cond);color:#666;letter-spacing:1px;padding:2px 12px 12px;text-transform:uppercase}
+.cd .tie{display:inline-block;background:var(--g);color:#fff;font-size:11px;padding:0 5px;margin-left:6px;border-radius:2px;vertical-align:3px}
+.hb{display:flex;align-items:center;gap:18px;background:var(--k);border-top:4px solid var(--o);padding:14px 22px;margin-top:40px}
+.hb img{height:64px;width:64px;background:#fff;border-radius:50%;padding:3px;flex:none}
+.hb img.wml{width:auto;height:54px;border-radius:5px;padding:0}
+.hb h2{margin:0;font:700 30px/36px var(--f-head);text-transform:uppercase;letter-spacing:1px;color:#fff;-webkit-text-stroke:4px var(--o);paint-order:stroke fill}
+.hg{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;margin-top:14px}
+.hy{background:#fff;border:1px solid var(--line);border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.hyh{background:var(--k);color:#fff;border-bottom:3px solid var(--o);font:700 22px var(--f-head);padding:8px 14px;letter-spacing:1px}
+.hy ul{list-style:none;margin:0;padding:10px 14px 12px}
+.hy li{font:600 18px var(--f-cond);padding:5px 0;border-bottom:1px solid #eee}
+.hy li:last-child{border-bottom:0}
+.pl{color:var(--o);font-weight:700}
+.dg{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:14px}
+.dc{border:1px solid var(--line);border-radius:8px;text-align:center;overflow:hidden}
+.dc .hyh{font-size:18px;padding:7px}
+.dc .wl{font:700 34px var(--f-head);padding:12px 0}
+.dc.at{border:2px solid var(--o)}.dc.at .hyh{background:var(--o);border-bottom-color:var(--k)}.dc.at .wl{color:var(--o)}
+.dc small{display:block;font:600 13px var(--f-cond);color:#777;margin:-8px 0 10px;letter-spacing:1px}
+@media(max-width:640px){
+  .hb{padding:12px 14px;gap:12px}.hb img{height:48px;width:48px}.hb img.wml{height:40px}
+  .hb h2{font-size:20px;line-height:24px;-webkit-text-stroke:3px var(--o)}
+  .hg{grid-template-columns:1fr 1fr;gap:10px}.hyh{font-size:18px}.hy li{font-size:16px}
+  .dg{grid-template-columns:1fr 1fr}.dc.at{grid-column:1/-1}
+  .cards{grid-template-columns:1fr 1fr;gap:10px}.cd .v{font-size:40px}.cd .nm{font-size:17px}.cd .c{font-size:13px;letter-spacing:1px}
+}
+@media(max-width:380px){.hg,.cards{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="top" id="top"></header>
+<div class="tk" id="tk"></div>
+<div class="hdr"><div class="wrap"><h1>History</h1><p>West Delaware Girls Wrestling · <b>Varsity</b> All-Time Records</p></div></div>
+
+<main class="wrap">
+  <div class="sec">Record Board</div>
+  <div class="tabs"><button class="on" data-k="c">Career</button><button data-k="s">Single Season</button></div>
+  <div id="cards" class="cards"><div class="msg" style="grid-column:1/-1">Loading records…</div></div>
+
+  <!-- To add a year or name below, edit the lists in this file (or ask Claude). -->
+  <div class="hb"><img src="img/ighsau.png" alt="IGHSAU"><h2>State Qualifiers</h2></div>
+  <div class="hg">
+    <div class="hy"><div class="hyh">2026</div><ul><li>Anna O'Rear <span class="pl">— 2nd</span></li><li>Berkley Lynch</li><li>Gracie Heim</li></ul></div>
+    <div class="hy"><div class="hyh">2025</div><ul><li>Anna O'Rear <span class="pl">— 2nd</span></li><li>Kylee Shoop <span class="pl">— 3rd</span></li></ul></div>
+    <div class="hy"><div class="hyh">2024</div><ul><li>Addison Schulte</li><li>Lexi Bunting</li><li>Anna O'Rear</li><li>Kylee Shoop</li><li>Abigail O'Rear</li><li>Samantha Murray</li></ul></div>
+    <div class="hy"><div class="hyh">2023</div><ul><li>Anna O'Rear</li><li>Kylee Shoop</li></ul></div>
+  </div>
+
+  <div class="hb"><img class="wml" src="img/wamac.png" alt="WaMaC Conference"><h2>WaMaC Conference Champions</h2></div>
+  <div class="hg">
+    <div class="hy"><div class="hyh">2025</div><ul><li>Anna O'Rear</li><li>Kylee Shoop</li></ul></div>
+    <div class="hy"><div class="hyh">2024</div><ul><li>Anna O'Rear</li></ul></div>
+  </div>
+
+  <div class="hb"><h2>Dual Meet Records</h2></div>
+  <div class="dg">
+    <div class="dc at"><div class="hyh">ALL-TIME</div><div class="wl">23-37</div><small>SINCE 2022-23</small></div>
+    <div class="dc"><div class="hyh">2025-26</div><div class="wl">4-11</div></div>
+    <div class="dc"><div class="hyh">2024-25</div><div class="wl">7-11</div></div>
+    <div class="dc"><div class="hyh">2023-24</div><div class="wl">9-10</div></div>
+    <div class="dc"><div class="hyh">2022-23</div><div class="wl">3-5</div></div>
+  </div>
+  <p class="note-live">Varsity only · Since 2022-23 · Record board updates live from team stats</p>
+</main>
+<footer class="foot" id="foot"></footer>
+
+<script src="js/site.js"></script>
+<script>
+async function boot(){
+  let rows=await wdLoad(WD.SHEETS.records,'Record Board','A2:F30');
+  rows=rows.filter(r=>r[0]&&!/^Near Falls/.test(r[0]));
+  const lbl=c=>String(c).replace('Near Falls - ','').replace(/^\s*Falls\s*\(\s*Pins?\s*\)\s*$/i,'Falls').replace(/^\s*Pins?\s*$/i,'Falls');
+  const card=(c,v,n,s)=>{const tie=String(n).includes(' & ');return '<div class="cd"><div class="c">'+esc(lbl(c))+'</div><div class="v">'+esc(v)+'</div><div class="nm">'+esc(fl(n)).replace(/ &amp; /g,'<br>')+(tie?'<span class="tie">TIE</span>':'')+'</div><div class="ss">'+esc(s)+'</div></div>'};
+  const el=document.getElementById('cards');
+  const show=k=>{el.innerHTML=rows.map(r=>k==='c'?card(r[0],r[2],r[1],'Career'):card(r[0],r[4],r[3],String(r[3]).includes('(')?'Single season':r[5]+' season')).join('')};
+  show('c');
+  document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('on',x===b));show(b.dataset.k)});
+}
+boot().catch(()=>wdRetry('cards','Records unavailable right now.',boot));
+</script>
+</body>
+</html>

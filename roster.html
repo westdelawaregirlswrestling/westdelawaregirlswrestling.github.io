@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Roster · West Delaware Girls Wrestling</title>
+<meta name="description" content="2026-27 West Delaware girls wrestling roster and coaching staff.">
+<link rel="icon" href="favicon.png"><link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@700;800&family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
+<style>
+.rg{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.ac{border:2px solid var(--k);display:flex;align-items:stretch}
+.ac .gr{background:var(--o);color:#fff;font:800 28px var(--f-head);min-width:58px;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:.95}
+.ac .gr small{font:700 11px var(--f-cond);letter-spacing:1px}
+.ac.staff .gr{background:var(--g)}
+.ac .in{padding:8px 10px}
+.ac h4{margin:0;font:700 20px var(--f-cond)}
+.ac .rl{font:500 13px var(--f-cond);color:#666;letter-spacing:1.5px;text-transform:uppercase}
+.wt{display:inline-block;background:var(--k);color:#fff;font:700 13px var(--f-cond);padding:0 6px;margin-left:6px;vertical-align:2px}
+.co{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.cc{background:var(--k);color:#fff;padding:12px 14px;border-left:6px solid var(--o)}
+.cc h4{margin:0;font:700 21px var(--f-cond)}
+.cc span{font:500 13px var(--f-cond);color:var(--g);letter-spacing:1.5px;text-transform:uppercase}
+@media(max-width:520px){.rg,.co{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="top" id="top"></header>
+<div class="tk" id="tk"></div>
+<div class="hdr"><div class="wrap"><h1>Team Roster</h1><p>West Delaware Girls Wrestling · <b id="season">2026-27</b></p></div></div>
+<main class="wrap"><div id="out"><div class="msg">Loading roster…</div></div><p class="note-live">Updates live from the team roster</p></main>
+<footer class="foot" id="foot"></footer>
+
+<script src="js/site.js"></script>
+<script>
+async function boot(){
+  const ID=WD.SHEETS.roster;
+  const [r,c]=await Promise.all([wdLoad(ID,'Roster','A1:D80'),wdLoad(ID,'Coaches','A1:A40').catch(()=>[])]);
+  const t=String(r[0]&&r[0][0]||'').match(/20\d\d-\d\d/);if(t)document.getElementById('season').textContent=t[0];
+  const RL=/^(wrestler|stats|video|manager)/i,isC=v=>/coach/i.test(v)&&/\S\s*-\s*\S/.test(v);
+  const ppl=[],co=[];
+  const addC=y=>{y=String(y==null?'':y).trim();if(isC(y)&&!co.includes(y))co.push(y)};
+  r.forEach(x=>{const v=x.map(y=>String(y==null?'':y).trim());v.forEach(addC);
+    const ri=v.findIndex(y=>RL.test(y)&&!/^role$/i.test(y));if(ri<0)return;
+    const g=v.find(y=>/^\d{1,2}$/.test(y))||'';
+    const nm=v.find((y,i)=>i!==ri&&y&&!/^\d{1,2}$/.test(y)&&!isC(y)&&!/^\d{2,3}(\s*lbs?)?$/i.test(y)&&!/^(name|grade|role|weight)$/i.test(y));if(!nm)return;
+    const wt=v.find((y,i)=>i>ri&&/^\d{2,3}(\s*lbs?)?$/i.test(y))||'';ppl.push([nm,g,v[ri],wt])});
+  c.forEach(x=>x.forEach(addC));
+  const yr=g=>({12:'SR',11:'JR',10:'SO',9:'FR'}[g]||'GR');
+  const cap=s=>String(s).toLowerCase().replace(/\b\w/g,m=>m.toUpperCase());
+  const card=(x,st)=>'<div class="ac'+(st?' staff':'')+'"><div class="gr">'+esc(x[1])+'<small>'+(st?'GRADE':yr(+x[1]))+'</small></div><div class="in"><h4>'+esc(x[0])+(x[3]?'<span class="wt">'+esc(x[3])+'</span>':'')+'</h4><div class="rl">'+esc(cap(x[2]).replace('Stats/video','Stats / Video'))+'</div></div></div>';
+  const w=ppl.filter(x=>/wrestler/i.test(x[2])),s=ppl.filter(x=>!/wrestler/i.test(x[2]));
+  let h='<div class="sec">Wrestlers <small>'+w.length+'</small></div><div class="rg">'+w.map(x=>card(x)).join('')+'</div>';
+  if(s.length)h+='<div class="sec">Stats, Video &amp; Managers</div><div class="rg">'+s.map(x=>card(x,1)).join('')+'</div>';
+  if(co.length)h+='<div class="sec">Coaching Staff</div><div class="co">'+co.map(x=>{const p=x.split(/\s*-\s*/);return '<div class="cc"><h4>'+esc(p[0])+'</h4><span>'+esc(p.slice(1).join(' - ')||'Coach')+'</span></div>'}).join('')+'</div>';
+  document.getElementById('out').innerHTML=h;
+}
+boot().catch(()=>wdRetry('out','Roster unavailable right now.',boot));
+</script>
+</body>
+</html>

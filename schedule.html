@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Schedule · West Delaware Girls Wrestling</title>
+<meta name="description" content="2026-27 practice and meet schedule for West Delaware girls wrestling.">
+<link rel="icon" href="favicon.png"><link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@700;800&family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
+<style>
+.bar{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin:22px 0 4px}
+.legend{display:flex;gap:16px;font:500 15px var(--f-cond);flex-wrap:wrap}
+.legend i{display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:5px;border-radius:2px}
+.bar .btn{margin-left:auto;font-size:15px;padding:10px 18px}
+.views{display:none;gap:0;margin:16px 0 0}
+.views button{flex:1;font:700 15px var(--f-cond);letter-spacing:1px;text-transform:uppercase;border:2px solid var(--k);background:#fff;padding:9px;cursor:pointer}
+.views button.on{background:var(--o);border-color:var(--o);color:#fff}
+
+/* month calendars (desktop) */
+.cal{display:flex;flex-direction:column;gap:26px;margin-top:16px}
+.mo{border:2px solid var(--k)}
+.mo h3{margin:0;background:var(--k);color:#fff;font:700 22px var(--f-head);text-transform:uppercase;letter-spacing:1px;padding:8px 12px;display:flex;justify-content:space-between}
+.mo h3 span{color:var(--o);font-size:17px}
+.grid{display:grid;grid-template-columns:repeat(7,1fr)}
+.dow{background:var(--g);color:#fff;font:700 13px var(--f-cond);text-align:center;padding:3px 0;letter-spacing:1px}
+.d{min-height:96px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:3px 4px;font-size:12px}
+.d:nth-child(7n){border-right:0}.d.x{background:var(--lg)}
+.d .n{font:700 14px var(--f-cond);color:#555}
+.d.today{background:var(--tint)}
+.d.today .n{background:var(--o);color:#fff;border-radius:50%;padding:0 5px}
+.m{background:var(--o);color:#fff;border-radius:3px;padding:3px 4px;margin-top:2px;font:600 12px/1.1 var(--f-cond);cursor:pointer}
+.m:hover{filter:brightness(1.08)}
+.m .op{display:block;font-weight:700}
+.m small{display:block;font-weight:500;opacity:.9;font-size:11px}
+.m .lv{background:#000;border-radius:2px;padding:0 3px;margin-right:3px;font-size:10px}
+.p{background:#ececec;border-left:3px solid var(--g);color:#333;padding:1px 3px;margin-top:2px;font:500 11px var(--f-cond)}
+
+/* list views (phone) */
+.list{display:none;margin-top:14px}
+.mc{display:flex;border:1px solid var(--line);border-left:6px solid var(--o);border-radius:4px;overflow:hidden;margin-bottom:10px}
+.mc .dt{background:var(--k);color:#fff;min-width:74px;text-align:center;padding:10px 4px;font-family:var(--f-head)}
+.mc .dt span{display:block;font-size:14px;color:var(--o);letter-spacing:1px}
+.mc .dt b{display:block;font-size:26px;line-height:1.1}
+.mc .tx{padding:9px 12px;font-size:14px;line-height:1.4}
+.mc h4{margin:0 0 2px;font:700 19px var(--f-cond)}
+.mc .opp{font:700 15px var(--f-cond);color:var(--o)}.mc .opp span{color:#666;font-weight:500}
+.mc .where{color:#555}
+.mc.past{opacity:.55}
+.wk{border:1px solid var(--line);border-radius:4px;margin-bottom:12px;overflow:hidden}
+.wk h4{margin:0;background:var(--k);color:#fff;font:700 16px var(--f-cond);letter-spacing:1px;padding:6px 12px;text-transform:uppercase}
+.wd{display:flex;gap:12px;padding:8px 12px;border-top:1px solid var(--line)}
+.wd .hd{min-width:58px;font:700 13px var(--f-cond);color:#555;letter-spacing:1px}
+.wd .hd b{display:block;font-size:22px;color:var(--k);line-height:1}
+.wd.today{background:var(--tint)}.wd.today .hd b{color:var(--o)}
+.wd>div:last-child{flex:1}
+.wd .m,.wd .p{font-size:14px;cursor:default;padding:4px 6px}
+
+/* popup */
+.pop{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:center;justify-content:center;z-index:60;padding:16px}
+.pop.on{display:flex}
+.bx{background:#fff;border:2px solid var(--k);width:440px;max-width:100%;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.bx h4{margin:0;background:var(--k);color:#fff;font:700 20px var(--f-head);padding:10px 44px 10px 14px;border-bottom:4px solid var(--o);position:relative;text-transform:uppercase}
+.bx .cl{position:absolute;right:8px;top:4px;color:#fff;cursor:pointer;font-size:28px;background:none;border:0}
+.bx .bd{padding:12px 14px 16px;line-height:1.5;font-size:15px}
+
+@media(max-width:700px){
+  .cal{display:none}.list{display:block}.views{display:flex}
+  .bar .btn{margin-left:0;width:100%;text-align:center}
+}
+</style>
+</head>
+<body>
+<header class="top" id="top"></header>
+<div class="tk" id="tk"></div>
+<div class="hdr"><div class="wrap"><h1>Schedule</h1><p>West Delaware Girls Wrestling · <b id="season">2026-27</b></p></div></div>
+
+<main class="wrap">
+  <div class="bar">
+    <div class="legend"><span><i style="background:var(--o)"></i>Meet / Dual / Tournament</span><span id="pl"><i style="background:#ececec;border-left:3px solid var(--g)"></i>Practice</span></div>
+    <a class="btn ghost" id="pdf" href="#" target="_blank" rel="noopener">Printable Calendar (PDF)</a>
+  </div>
+  <div class="views" role="tablist"><button class="on" data-v="meets">Meets</button><button data-v="weeks">Week by Week</button></div>
+  <div id="cal" class="cal"><div class="msg">Loading schedule…</div></div>
+  <div id="list" class="list"></div>
+  <p class="note-live">Updates live from the team schedule · Times Central</p>
+</main>
+
+<div class="pop" id="pop"><div class="bx" role="dialog" aria-modal="true"><h4><span id="pt"></span><button class="cl" aria-label="Close">&times;</button></h4><div class="bd" id="pb"></div></div></div>
+<footer class="foot" id="foot"></footer>
+
+<script src="js/site.js"></script>
+<script>
+document.getElementById('pdf').href=WD.CALENDAR_PDF;
+let D,view='meets';
+function detail(m){return (m.op?'<div style="font:700 17px var(--f-cond);color:var(--o)">'+esc(m.op)+'</div>'+(m.of?'<div><b>Opponents:</b> '+esc(m.of)+'</div>':''):'')+
+  '<span class="tag">'+esc(m.lv)+'</span>'+esc(m.ty)+'<br>'+esc(m.full)+(m.ad?'<br><span style="color:#666">'+esc(m.ad)+'</span>':'')+
+  '<br><b>Start:</b> '+esc(m.st)+(m.wi?' · <b>Weigh-ins:</b> '+esc(m.wi):'')+meetLinks(m)}
+
+function renderCal(){
+  const all=D.meets.map(m=>m.d).concat(D.practices.map(p=>p.d));
+  if(!all.length){document.getElementById('cal').innerHTML='<div class="msg">No events posted yet.</div>';return}
+  let s=new Date(Math.min(...all)),e=new Date(Math.max(...all));s=new Date(s.getFullYear(),s.getMonth(),1);
+  const tk=dkey(todayCT());let h='';
+  for(let c=new Date(s);c<=e;c=new Date(c.getFullYear(),c.getMonth()+1,1)){
+    const cnt=D.meets.filter(m=>m.d.getMonth()===c.getMonth()&&m.d.getFullYear()===c.getFullYear()).length;
+    h+='<div class="mo"><h3>'+MN[c.getMonth()]+' '+c.getFullYear()+'<span>'+cnt+' meet'+(cnt==1?'':'s')+'</span></h3><div class="grid">'+DN.map(x=>'<div class="dow">'+x+'</div>').join('');
+    const first=c.getDay(),days=new Date(c.getFullYear(),c.getMonth()+1,0).getDate();
+    for(let i=0;i<first;i++)h+='<div class="d x"></div>';
+    for(let d=1;d<=days;d++){const k=dkey(new Date(c.getFullYear(),c.getMonth(),d));
+      h+='<div class="d'+(k===tk?' today':'')+'"><span class="n">'+d+'</span>';
+      (D.byM[k]||[]).forEach(m=>h+='<div class="m" data-i="'+D.meets.indexOf(m)+'" title="Click for details"><span class="lv">'+esc(lvShort(m.lv))+'</span>'+esc(m.ev)+(m.op?'<span class="op">'+esc(m.op)+'</span>':'')+'<small>'+esc(m.st)+' · '+esc(m.loc)+'</small></div>');
+      if(!D.byM[k])(D.byP[k]||[]).forEach(p=>h+='<div class="p">Practice '+esc(p.t)+(p.l?' · <b>'+esc(p.l)+'</b>':'')+'</div>');
+      h+='</div>'}
+    const tail=(7-(first+days)%7)%7;for(let i=0;i<tail;i++)h+='<div class="d x"></div>';h+='</div></div>'}
+  document.getElementById('cal').innerHTML=h;
+}
+function renderList(){
+  const today=todayCT(),el=document.getElementById('list');
+  if(view==='meets'){
+    const up=D.meets.filter(m=>m.d>=today),past=D.meets.filter(m=>m.d<today);
+    el.innerHTML='<div class="sec" style="margin-top:6px">Upcoming Meets</div>'+(up.length?up.map(meetCard).join(''):'<div class="msg">No upcoming meets posted.</div>')+
+      (past.length?'<div class="sec">Earlier This Season</div>'+past.reverse().map(m=>meetCard(m).replace('class="mc"','class="mc past"')).join(''):'');
+    return}
+  // week-by-week: every day from this week through the end of the season
+  const mon=new Date(today);mon.setDate(today.getDate()+(today.getDay()===0?1:1-today.getDay()));
+  const last=new Date(Math.max(...D.meets.map(m=>m.d),...D.practices.map(p=>p.d),+mon));
+  const tk=dkey(today);let h='';
+  for(let w=new Date(mon);w<=last;w.setDate(w.getDate()+7)){
+    const days=[...Array(6)].map((_,i)=>new Date(w.getFullYear(),w.getMonth(),w.getDate()+i));
+    h+='<div class="wk"><h4>Week of '+(days[0].getMonth()+1)+'/'+days[0].getDate()+'</h4>'+days.map(d=>{const k=dkey(d);let x='';
+      (D.byM[k]||[]).forEach(m=>x+='<div class="m"><span class="lv">'+esc(lvShort(m.lv))+'</span>'+esc(m.ev)+(m.op?'<span class="op">'+esc(m.op)+'</span>':'')+'<small>'+esc(m.st)+' · '+esc(m.loc)+'</small>'+meetLinks(m)+'</div>');
+      if(!D.byM[k])(D.byP[k]||[]).forEach(p=>x+='<div class="p">Practice '+esc(p.t)+(p.l?' · <b>'+esc(p.l)+'</b>':'')+'</div>');
+      if(!x)x='<div style="color:#999;font:500 14px var(--f-cond)">No practice</div>';
+      return '<div class="wd'+(k===tk?' today':'')+'"><div class="hd">'+DN[d.getDay()]+'<b>'+(d.getMonth()+1)+'/'+d.getDate()+'</b></div><div>'+x+'</div></div>'}).join('')+'</div>'}
+  el.innerHTML=h;
+}
+async function boot(){
+  D=await loadSchedule();
+  if(D.season)document.getElementById('season').textContent=D.season;
+  if(!D.practices.length)document.getElementById('pl').style.display='none';
+  renderCal();renderList();
+}
+boot().catch(()=>wdRetry('cal','Schedule unavailable right now.',boot));
+document.querySelectorAll('.views button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.views button').forEach(x=>x.classList.toggle('on',x===b));view=b.dataset.v;if(D)renderList()});
+const pop=document.getElementById('pop');
+document.getElementById('cal').addEventListener('click',ev=>{const t=ev.target.closest('.m');if(!t)return;const m=D.meets[+t.dataset.i];
+  document.getElementById('pt').textContent=(m.d.getMonth()+1)+'/'+m.d.getDate()+' · '+m.ev;document.getElementById('pb').innerHTML=detail(m);pop.classList.add('on')});
+pop.addEventListener('click',ev=>{if(ev.target===pop||ev.target.closest('.cl'))pop.classList.remove('on')});
+document.addEventListener('keydown',ev=>{if(ev.key==='Escape')pop.classList.remove('on')});
+</script>
+</body>
+</html>
