@@ -19,23 +19,17 @@
 .cd b{font:800 40px/1.1 var(--f-head);letter-spacing:3px;color:var(--o)}
 .cd em{font:600 12px var(--f-cond);color:#bbb;font-style:normal;letter-spacing:1px}
 .bd{display:flex;gap:12px;align-items:center;margin-top:12px;flex-wrap:wrap}.bd img{height:46px;width:auto;display:block}
-.cal{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.cal a{display:block;background:var(--k);color:#fff;text-decoration:none;border-radius:6px;padding:18px 20px;border-bottom:5px solid var(--o)}
-.cal a b{display:block;font:700 22px var(--f-head);text-transform:uppercase}
-.cal a span{font:500 15px var(--f-cond);color:#bbb;letter-spacing:.5px}
-.cal a:hover b{color:var(--o)}
-@media(max-width:640px){.hj{flex-direction:column;text-align:center;padding:16px 12px}.bd{justify-content:center}.cd b{font-size:32px}.cal{grid-template-columns:1fr}}
-</style>
+.who{display:inline-block;background:var(--o);color:#fff;font:700 12px var(--f-cond);letter-spacing:1.5px;text-transform:uppercase;padding:2px 8px;border-radius:2px;margin-bottom:6px}
+@media(max-width:640px){.hj{flex-direction:column;text-align:center;padding:16px 12px}.bd{justify-content:center}.cd b{font-size:32px}</style>
 </head>
 <body>
 <header class="top" id="top"></header>
 <div class="tk" id="tk"></div>
-<div class="hdr"><div class="wrap"><h1>Parents &amp; Athletes</h1><p>West Delaware Girls Wrestling</p></div></div>
+<div class="hdr"><div class="wrap"><h1>Parents &amp; Athletes</h1></div></div>
 
-<main class="wrap">
-  <div class="sec">Team App</div>
+<main class="wrap" style="padding-top:28px">
   <div class="hj"><img class="ic" src="img/heja-icon.png" alt="Heja app icon">
-    <div><h2>Team App: <span>Heja</span></h2>
+    <div><div class="who">High School Team</div><h2>Team App: <span>Heja</span></h2>
       <p>We use Heja for all team communication: schedule updates, announcements, and messages.</p>
       <button class="cd" id="code" title="Tap to copy"><small>TEAM CODE</small><b>VY-431905</b><em id="cp">TAP TO COPY</em></button>
       <div class="bd">
@@ -45,17 +39,11 @@
     </div>
   </div>
 
-  <div class="sec">Season Calendar</div>
-  <div class="cal">
-    <a id="pdf" href="#" target="_blank" rel="noopener"><b>Printable Calendar (PDF)</b><span>Practices &amp; meets by month — print it for the fridge</span></a>
-    <a href="schedule.html"><b>Live Schedule</b><span>Always up to date · times, locations, directions</span></a>
-  </div>
 </main>
 <footer class="foot" id="foot"></footer>
 
 <script src="js/site.js"></script>
 <script>
-document.getElementById('pdf').href=WD.CALENDAR_PDF;
 document.getElementById('code').onclick=()=>{try{navigator.clipboard.writeText('VY-431905').then(()=>{document.getElementById('cp').textContent='COPIED!'})}catch(e){}};
 </script>
 </body>

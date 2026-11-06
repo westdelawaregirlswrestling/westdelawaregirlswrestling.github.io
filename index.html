@@ -83,12 +83,12 @@
 @media(max-width:700px){.mlist{grid-template-columns:1fr}}
 
 /* quick links */
-.ql{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.ql{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 .ql a{display:flex;flex-direction:column;justify-content:center;gap:4px;min-height:96px;background:var(--k);color:#fff;text-decoration:none;border-radius:6px;padding:14px 16px;border-bottom:5px solid var(--o);transition:transform .15s}
 .ql a:hover{transform:translateY(-2px)}
 .ql b{font:700 19px var(--f-head);text-transform:uppercase}
 .ql span{font:500 14px var(--f-cond);color:#bbb;letter-spacing:.5px}
-@media(max-width:860px){.ql{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.ql{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -101,7 +101,6 @@
       <h1>West Delaware Girls Wrestling</h1>
       <p class="sub"><b>Hawks</b></p>
       <div class="next" id="next" hidden></div>
-      <div class="cta"><a class="btn" href="schedule.html">Full Schedule</a><a class="btn ghost" href="roster.html">Meet the Team</a></div>
     </div>
     <div class="ph" id="ph" aria-label="Team photos"><div class="dots" id="dots"></div></div>
   </div>
@@ -115,15 +114,13 @@
     <div class="row" id="row"><div class="msg" style="grid-column:1/-1">Loading…</div></div>
   </div>
 
-  <div class="sec">Upcoming Meets <a href="schedule.html">Full schedule ›</a></div>
+  <div class="sec">Coming Up <a href="schedule.html">Full schedule ›</a></div>
   <div class="mlist" id="up"><div class="msg" style="grid-column:1/-1">Loading…</div></div>
 
   <div class="sec">Quick Links</div>
   <div class="ql">
-    <a href="parents.html"><b>Heja Team App</b><span>Messages, updates &amp; team code</span></a>
+    <a href="parents.html"><b>Heja Team App</b><span>High school team code, messages &amp; updates</span></a>
     <a id="pdf" href="#" target="_blank" rel="noopener"><b>Season Calendar</b><span>Printable PDF of practices &amp; meets</span></a>
-    <a href="history.html"><b>Records</b><span>Program record board &amp; history</span></a>
-    <a href="youth.html"><b>Youth Wrestling</b><span>Grades JK–6th sign-up</span></a>
   </div>
   <p class="note-live">Schedule, photos &amp; news update live from the team's sheets · Times Central</p>
 </main>
@@ -152,7 +149,8 @@ async function bootSchedule(){
   renderWeek();
   const today=todayCT();
   const up=DATA.meets.filter(m=>m.d>=today);
-  document.getElementById('up').innerHTML=up.length?up.slice(0,6).map(meetCard).join(''):'<div class="msg" style="grid-column:1/-1">No upcoming meets posted. Check back soon!</div>';
+  const rest=up.slice(1);
+  document.getElementById('up').innerHTML=rest.length?rest.slice(0,6).map(meetCard).join(''):'<div class="msg" style="grid-column:1/-1">No upcoming meets posted. Check back soon!</div>';
   const n=up[0];
   if(n){const days=Math.round((n.d-today)/864e5);const when=days===0?'Today':days===1?'Tomorrow':DN[n.d.getDay()].charAt(0)+DN[n.d.getDay()].slice(1).toLowerCase()+' '+(n.d.getMonth()+1)+'/'+n.d.getDate();
     const el=document.getElementById('next');el.hidden=false;
