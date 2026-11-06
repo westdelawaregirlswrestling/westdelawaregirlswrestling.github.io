@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Parents &amp; Athletes · West Delaware Girls Wrestling</title>
-<meta name="description" content="Heja team app code, printable season calendar and info for West Delaware girls wrestling families.">
+<meta name="description" content="Bound activity registration steps and the Heja team app code for West Delaware girls wrestling families.">
 <link rel="icon" href="favicon.png"><link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@700;800&family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
@@ -20,14 +20,53 @@
 .cd em{font:600 12px var(--f-cond);color:#bbb;font-style:normal;letter-spacing:1px}
 .bd{display:flex;gap:12px;align-items:center;margin-top:12px;flex-wrap:wrap}.bd img{height:46px;width:auto;display:block}
 .who{display:inline-block;background:var(--o);color:#fff;font:700 12px var(--f-cond);letter-spacing:1.5px;text-transform:uppercase;padding:2px 8px;border-radius:2px;margin-bottom:6px}
-@media(max-width:640px){.hj{flex-direction:column;text-align:center;padding:16px 12px}.bd{justify-content:center}.cd b{font-size:32px}</style>
+@media(max-width:640px){.hj{flex-direction:column;text-align:center;padding:16px 12px}.bd{justify-content:center}.cd b{font-size:32px}}
+/* Bound registration card */
+.bnd{align-items:flex-start}
+.bnd .qr{flex:none;text-align:center;width:150px}
+.bnd .qr img{width:150px;height:150px;display:block;border:2px solid var(--k);border-radius:6px}
+.bnd .qr small{display:block;margin-top:6px;font:600 13px var(--f-cond);color:#666;letter-spacing:.5px;text-transform:uppercase}
+.steps{list-style:none;margin:14px 0 16px;padding:0;counter-reset:st}
+.steps li{counter-increment:st;position:relative;padding:0 0 14px 52px;font-size:15px;line-height:1.45;color:#333}
+.steps li:before{content:counter(st);position:absolute;left:0;top:0;width:38px;height:38px;border-radius:50%;background:var(--o);color:#fff;font:800 20px/38px var(--f-head);text-align:center}
+.steps li b{display:block;font:700 19px var(--f-cond);color:var(--k);text-transform:uppercase;letter-spacing:.3px}
+.steps .two{display:grid;grid-template-columns:1fr 1fr;gap:6px 18px;margin-top:2px}
+.steps .two u{text-decoration:none;font-weight:700;color:var(--o);display:block}
+.bnd .help{margin:10px 0 0;font-size:14px;color:#555}
+.bnd .btn{font-size:17px;padding:12px 24px}
+@media(max-width:640px){
+  .bnd .qr{display:none}
+  .bnd{text-align:left;padding:16px 14px}
+  .bnd .who,.bnd h2{text-align:center}.bnd h2{font-size:21px}
+  .steps .two{grid-template-columns:1fr}
+  .bnd .btn{display:block;text-align:center}
+}
+</style>
 </head>
 <body>
 <header class="top" id="top"></header>
 <div class="tk" id="tk"></div>
 <div class="hdr"><div class="wrap"><h1>Parents &amp; Athletes</h1></div></div>
 
-<main class="wrap" style="padding-top:28px">
+<main class="wrap">
+  <div class="sec">Registration</div>
+  <div class="hj bnd">
+    <div class="qr"><img src="img/bound-qr.png" alt="QR code linking to West Delaware on Bound"><small>Scan with your phone</small></div>
+    <div><div class="who">Required Every Year</div><h2>Activity Registration: <span>Bound</span></h2>
+      <p>Every athlete registers for wrestling in Bound each year. It's also where you upload a physical and sign the consent forms.</p>
+      <ol class="steps">
+        <li><b>Open Bound</b>Use the button below or scan the code, then click the <strong>Registration</strong> tab.</li>
+        <li><b>Log in or create an account</b>
+          <div class="two"><div><u>Returning students</u>Click your student portal and register for activities. Skip step 3.</div>
+          <div><u>New to Bound</u>Click "Create Your Account Now" to make a family account, then go to step 3.</div></div></li>
+        <li><b>Add your student</b>Click "Add a Student" and search for your student. Verify the information and click "Connect to My Student".</li>
+      </ol>
+      <a class="btn" href="https://www.gobound.com/ia/schools/westdelaware" target="_blank" rel="noopener">Register on Bound</a>
+      <p class="help"><strong>Need help?</strong> Use the green chat bubble on the Bound site to reach their support team.</p>
+    </div>
+  </div>
+
+  <div class="sec">Team App</div>
   <div class="hj"><img class="ic" src="img/heja-icon.png" alt="Heja app icon">
     <div><div class="who">High School Team</div><h2>Team App: <span>Heja</span></h2>
       <p>We use Heja for all team communication: schedule updates, announcements, and messages.</p>
