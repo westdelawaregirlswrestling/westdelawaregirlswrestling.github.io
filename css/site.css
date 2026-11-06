@@ -1,0 +1,95 @@
+/* West Delaware Girls Wrestling — shared styles
+   Brand: Orange #E04E0F · Black #111 · Gray #A6A6A6 · White */
+:root{
+  --o:#E04E0F;--o-dk:#c24009;--k:#111;--g:#A6A6A6;--lg:#F2F2F2;--w:#fff;
+  --ink:#111;--muted:#666;--line:#ddd;--tint:#FFF3EC;
+  --max:1100px;--gut:22px;
+  --f-head:'Fira Sans',Arial,sans-serif;
+  --f-cond:'Barlow Condensed',Arial,sans-serif;
+  --f-body:Barlow,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:#fff;color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.45}
+img{max-width:100%}
+a{color:var(--o)}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gut)}
+.msg{padding:28px;text-align:center;font-family:var(--f-cond);color:#777;font-size:16px}
+.msg button{margin-left:6px;background:var(--o);color:#fff;border:0;border-radius:3px;padding:6px 12px;font:700 13px var(--f-cond);letter-spacing:1px;text-transform:uppercase;cursor:pointer}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* ---------- top bar + nav ---------- */
+.top{background:var(--k);position:sticky;top:0;z-index:40;border-bottom:4px solid var(--o)}
+.top .wrap{display:flex;align-items:center;gap:14px;height:64px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:#fff;flex:none}
+.brand img{width:46px;height:46px;border-radius:50%}
+.brand span{font:700 15px/1.05 var(--f-head);text-transform:uppercase;letter-spacing:.5px}
+.brand span b{display:block;color:var(--o);font-size:12px;letter-spacing:2px}
+.nav{margin-left:auto;display:flex;gap:2px}
+.nav a{color:#fff;text-decoration:none;font:600 16px var(--f-cond);letter-spacing:.8px;text-transform:uppercase;padding:8px 11px;border-radius:3px}
+.nav a:hover{background:#2a2a2a}
+.nav a[aria-current=page]{color:var(--o)}
+.menu{display:none;margin-left:auto;background:none;border:0;color:#fff;padding:8px;cursor:pointer}
+.menu svg{display:block}
+@media(max-width:860px){
+  .menu{display:block}
+  .nav{display:none;position:absolute;left:0;right:0;top:68px;background:var(--k);flex-direction:column;padding:6px 0 12px;border-bottom:4px solid var(--o);box-shadow:0 10px 20px rgba(0,0,0,.3)}
+  .nav.open{display:flex}
+  .nav a{padding:12px var(--gut);font-size:19px;border-radius:0}
+}
+
+/* ---------- page title bar ---------- */
+.hdr{background:var(--k);color:#fff;padding:22px 0 24px}
+.hdr h1{margin:0;font:700 40px/46px var(--f-head);letter-spacing:1px;text-transform:uppercase;color:#fff;-webkit-text-stroke:5px var(--o);paint-order:stroke fill}
+.hdr p{margin:6px 0 0;font:500 14px/1.2 var(--f-cond);letter-spacing:2px;text-transform:uppercase;color:#bbb}
+.hdr p b{color:var(--o)}
+@media(max-width:640px){.hdr{padding:16px 0 18px}.hdr h1{font-size:28px;line-height:33px;-webkit-text-stroke:4px var(--o)}.hdr p{font-size:12px}}
+
+/* ---------- section headings ---------- */
+.sec{font:700 26px var(--f-head);text-transform:uppercase;margin:34px 0 14px;display:flex;align-items:center;gap:12px}
+.sec:after{content:"";flex:1;height:3px;background:var(--o)}
+.sec small{font:600 18px var(--f-cond);color:var(--muted);text-transform:none}
+.sec a{order:2;font:700 14px var(--f-cond);letter-spacing:1px;text-decoration:none;white-space:nowrap}
+@media(max-width:640px){.sec{font-size:21px;margin:26px 0 12px}}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-block;font:800 18px var(--f-head);text-transform:uppercase;letter-spacing:1px;color:#fff;background:var(--o);border-radius:6px;text-decoration:none;padding:14px 28px;box-shadow:0 2px 6px rgba(0,0,0,.25);border:0;cursor:pointer}
+.btn:hover{background:var(--o-dk)}
+.btn.big{font-size:24px;padding:18px 44px}
+.btn.ghost{background:#fff;color:var(--o);border:2px solid var(--o);box-shadow:none}
+.btn.ghost:hover{background:var(--o);color:#fff}
+@media(max-width:640px){.btn.big{font-size:20px;padding:16px 30px}}
+
+/* ---------- small link chips (GoBound / Directions) ---------- */
+.lk{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.lk a{display:inline-block;border:2px solid var(--o);color:var(--o);background:#fff;font:700 13px var(--f-cond);letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:3px;text-decoration:none}
+.lk a:hover{background:var(--o);color:#fff}
+.tag{display:inline-block;background:var(--o);color:#fff;font:700 12px var(--f-cond);padding:0 6px;border-radius:2px;margin-right:4px;letter-spacing:.5px}
+
+/* ---------- news ticker ---------- */
+.tk{display:none;align-items:stretch;background:var(--k);color:#fff;height:46px;overflow:hidden;font-family:var(--f-cond);text-transform:uppercase;border-bottom:1px solid #333}
+.tk.on{display:flex}
+.tk .lbl{flex:none;display:flex;align-items:center;padding:0 16px;background:var(--o);font:700 15px var(--f-head);letter-spacing:1px;position:relative;z-index:2}
+.tk .lbl:after{content:"";position:absolute;right:-12px;top:0;border-left:12px solid var(--o);border-top:23px solid transparent;border-bottom:23px solid transparent}
+.tk .vp{flex:1;overflow:hidden;position:relative;display:flex;align-items:center;-webkit-mask:linear-gradient(90deg,transparent 0,#000 24px,#000 calc(100% - 24px),transparent);mask:linear-gradient(90deg,transparent 0,#000 24px,#000 calc(100% - 24px),transparent)}
+.tk .track{display:flex;white-space:nowrap;will-change:transform;animation:tkmv var(--d,40s) linear infinite}
+.tk .vp:hover .track,.tk .vp.hold .track{animation-play-state:paused}
+@keyframes tkmv{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.tk .it{display:inline-flex;align-items:center;gap:10px;padding:0 26px;font-size:18px;font-weight:600;letter-spacing:.8px}
+.tk .it:after{content:"";width:6px;height:6px;background:var(--o);transform:rotate(45deg);margin-left:26px}
+.tk .tg{font:700 11px var(--f-head);letter-spacing:1.2px;color:var(--o);border:1.5px solid var(--o);border-radius:3px;padding:2px 6px;line-height:1}
+.tk .fade .track{animation:none;transform:none;width:100%}
+.tk .fade .it{position:absolute;inset:0;justify-content:center;opacity:0;transition:opacity .6s;white-space:normal;text-align:center;font-size:15px;line-height:1.15;padding:0 14px}
+.tk .fade .it:after{display:none}
+.tk .fade .it.cur{opacity:1}
+@media(max-width:640px){.tk{height:auto;min-height:52px}.tk .lbl{font-size:12px;padding:0 10px}.tk .lbl:after{border-top-width:26px;border-bottom-width:26px}}
+
+/* ---------- footer ---------- */
+.foot{background:var(--k);color:#bbb;margin-top:48px;border-top:4px solid var(--o);padding:26px 0;font:500 14px var(--f-cond);letter-spacing:1px;text-transform:uppercase}
+.foot .wrap{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.foot img{width:54px;height:54px;border-radius:50%}
+.foot b{color:#fff;font-family:var(--f-head);letter-spacing:.5px}
+.foot nav{margin-left:auto;display:flex;gap:14px;flex-wrap:wrap}
+.foot nav a{color:#bbb;text-decoration:none}
+.foot nav a:hover{color:var(--o)}
+.note-live{font:500 13px var(--f-cond);color:#777;letter-spacing:1px;text-transform:uppercase;text-align:center;margin-top:18px}

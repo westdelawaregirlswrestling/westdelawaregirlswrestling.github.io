@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>West Delaware Girls Wrestling</title>
+<meta name="description" content="West Delaware Hawks girls wrestling — this week's practices and meets, schedule, roster, records, and info for parents and youth wrestlers.">
+<link rel="icon" href="favicon.png"><link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<meta property="og:title" content="West Delaware Girls Wrestling"><meta property="og:image" content="img/logo-400.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@700;800&family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
+<style>
+/* hero */
+.hero{background:var(--k);color:#fff;padding:30px 0 34px}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:34px;align-items:center}
+.hero h1{margin:0;font:800 50px/1.02 var(--f-head);text-transform:uppercase;letter-spacing:1px;color:#fff;-webkit-text-stroke:6px var(--o);paint-order:stroke fill}
+.hero .sub{margin:12px 0 0;font:600 17px var(--f-cond);letter-spacing:3px;text-transform:uppercase;color:#bbb}
+.hero .sub b{color:var(--o)}
+.next{margin-top:24px;border:2px solid #333;border-left:6px solid var(--o);border-radius:6px;padding:12px 16px;background:#1a1a1a}
+.next small{font:700 13px var(--f-cond);letter-spacing:2px;color:var(--o);text-transform:uppercase}
+.next h3{margin:2px 0 2px;font:700 22px var(--f-head);text-transform:uppercase}
+.next p{margin:0;font:500 16px var(--f-cond);color:#ddd;letter-spacing:.5px}
+.next .when{color:#fff;font-weight:700}
+.next .lk a{background:transparent}
+.hero .cta{margin-top:20px;display:flex;gap:12px;flex-wrap:wrap}
+.hero .cta .ghost{background:transparent}
+.ph{position:relative;aspect-ratio:16/10;border-radius:14px;overflow:hidden;background:#000;box-shadow:0 0 0 3px var(--o)}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;transition:opacity 1.2s ease}
+.ph img.on{opacity:1}
+.ph img.logo{padding:10%}
+.ph:after{content:"";position:absolute;left:0;right:0;bottom:0;height:22%;background:linear-gradient(transparent,rgba(0,0,0,.55));pointer-events:none}
+.dots{position:absolute;bottom:10px;left:0;right:0;display:flex;justify-content:center;gap:7px;z-index:2}
+.dots b{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.55);cursor:pointer;transition:.3s}
+.dots b.on{background:var(--o);width:20px;border-radius:4px}
+@media(max-width:860px){.hero .wrap{grid-template-columns:1fr;gap:22px}.hero h1{font-size:36px;-webkit-text-stroke:5px var(--o)}.hero{padding:22px 0 26px}}
+@media(max-width:420px){.hero h1{font-size:30px;-webkit-text-stroke:4px var(--o)}}
+
+/* this week */
+.tw{border:2px solid var(--k);border-radius:4px;overflow:hidden}
+.tw-h{background:var(--k);color:#fff;display:flex;align-items:center;gap:10px;padding:8px 10px 8px 16px;border-bottom:4px solid var(--o)}
+.tw-h h2{margin:0;font:700 24px var(--f-head);text-transform:uppercase;-webkit-text-stroke:4px var(--o);paint-order:stroke fill;letter-spacing:1px}
+.tw-h .rg{margin-left:auto;font:700 18px var(--f-cond);color:var(--o);letter-spacing:1px}
+.tw-h button{background:#2a2a2a;color:#fff;border:0;border-radius:3px;width:32px;height:32px;font:700 18px var(--f-cond);cursor:pointer}
+.tw-h button:hover{background:var(--o)}
+.row{display:grid;grid-template-columns:repeat(6,1fr)}
+.dy{border-right:1px solid var(--line);padding:8px;min-height:170px;font-size:13px}
+.dy:last-child{border-right:0}
+.dy .hd{font:700 14px var(--f-cond);letter-spacing:1px;color:#555;margin-bottom:4px}
+.dy .hd b{font:700 22px var(--f-cond);color:var(--k);margin-left:4px}
+.dy.today{background:var(--tint);box-shadow:inset 0 0 0 2px var(--o)}
+.dy.today .hd b{color:var(--o)}
+.dy.today .hd:after{content:"TODAY";display:inline-block;margin-left:6px;background:var(--o);color:#fff;font-size:10px;padding:0 4px;border-radius:2px;vertical-align:3px}
+.m{background:var(--o);color:#fff;border-radius:3px;padding:5px 6px;margin-top:4px;font:600 14px/1.15 var(--f-cond)}
+.m .op{display:block;font-weight:700;font-size:13px}
+.m small{display:block;font-weight:500;font-size:13px;opacity:.95}
+.m .lv{background:#000;border-radius:2px;padding:0 3px;margin-right:4px;font-size:11px}
+.m .lk{gap:4px;margin-top:5px}.m .lk a{border-color:#fff;font-size:11px;padding:1px 5px}
+.p{background:#ececec;border-left:3px solid var(--g);color:#333;padding:4px 6px;margin-top:4px;font:500 14px/1.2 var(--f-cond)}
+.p b{font-weight:700}
+.none{color:#999;font:500 14px var(--f-cond);margin-top:4px}
+@media(max-width:700px){
+  .row{grid-template-columns:1fr}
+  .dy{border-right:0;border-bottom:1px solid var(--line);min-height:0;display:flex;gap:12px;padding:10px 12px}
+  .dy:last-child{border-bottom:0}
+  .dy .hd{min-width:58px;margin:2px 0 0}
+  .dy .hd b{display:block;margin:0;font-size:24px;line-height:1}
+  .dy.today .hd:after{margin:4px 0 0;display:inline-block}
+  .dy>div:last-child{flex:1}
+  .m,.p{font-size:15px}
+}
+
+/* upcoming meets */
+.mlist{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.mc{display:flex;border:1px solid var(--line);border-left:6px solid var(--o);border-radius:4px;overflow:hidden;background:#fff}
+.mc .dt{background:var(--k);color:#fff;min-width:76px;text-align:center;padding:10px 4px;font-family:var(--f-head)}
+.mc .dt span{display:block;font-size:14px;color:var(--o);letter-spacing:1px}
+.mc .dt b{display:block;font-size:26px;line-height:1.1}
+.mc .tx{padding:9px 12px;font-size:14px;line-height:1.4}
+.mc h4{margin:0 0 2px;font:700 19px var(--f-cond)}
+.mc .opp{font:700 15px var(--f-cond);color:var(--o)}.mc .opp span{color:#666;font-weight:500}
+.mc .where{color:#555}
+@media(max-width:700px){.mlist{grid-template-columns:1fr}}
+
+/* quick links */
+.ql{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.ql a{display:flex;flex-direction:column;justify-content:center;gap:4px;min-height:96px;background:var(--k);color:#fff;text-decoration:none;border-radius:6px;padding:14px 16px;border-bottom:5px solid var(--o);transition:transform .15s}
+.ql a:hover{transform:translateY(-2px)}
+.ql b{font:700 19px var(--f-head);text-transform:uppercase}
+.ql span{font:500 14px var(--f-cond);color:#bbb;letter-spacing:.5px}
+@media(max-width:860px){.ql{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<header class="top" id="top"></header>
+<div class="tk" id="tk"></div>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <h1>West Delaware Girls Wrestling</h1>
+      <p class="sub"><b>Hawks</b> · <span id="season">2026-27</span> Season</p>
+      <div class="next" id="next" hidden></div>
+      <div class="cta"><a class="btn" href="schedule.html">Full Schedule</a><a class="btn ghost" href="roster.html">Meet the Team</a></div>
+    </div>
+    <div class="ph" id="ph" aria-label="Team photos"><div class="dots" id="dots"></div></div>
+  </div>
+</section>
+
+<main class="wrap">
+  <h2 class="sr">This week</h2>
+  <div class="sec" style="margin-top:30px">This Week</div>
+  <div class="tw">
+    <div class="tw-h"><button id="prev" aria-label="Previous week">‹</button><span class="rg" id="rg"></span><button id="nxt" aria-label="Next week">›</button></div>
+    <div class="row" id="row"><div class="msg" style="grid-column:1/-1">Loading…</div></div>
+  </div>
+
+  <div class="sec">Upcoming Meets <a href="schedule.html">Full schedule ›</a></div>
+  <div class="mlist" id="up"><div class="msg" style="grid-column:1/-1">Loading…</div></div>
+
+  <div class="sec">Quick Links</div>
+  <div class="ql">
+    <a href="parents.html"><b>Heja Team App</b><span>Messages, updates &amp; team code</span></a>
+    <a id="pdf" href="#" target="_blank" rel="noopener"><b>Season Calendar</b><span>Printable PDF of practices &amp; meets</span></a>
+    <a href="history.html"><b>Records</b><span>Program record board &amp; history</span></a>
+    <a href="youth.html"><b>Youth Wrestling</b><span>Grades JK–6th sign-up</span></a>
+  </div>
+  <p class="note-live">Schedule, photos &amp; news update live from the team's sheets · Times Central</p>
+</main>
+<footer class="foot" id="foot"></footer>
+
+<script src="js/site.js"></script>
+<script>
+document.getElementById('pdf').href=WD.CALENDAR_PDF;
+
+/* ---------- This Week + Upcoming + Next meet ---------- */
+let weekOffset=0,DATA=null;
+function renderWeek(){
+  const now=todayCT();
+  const base=new Date(now);base.setDate(now.getDate()+(now.getDay()===0?1:1-now.getDay())+weekOffset*7);
+  const days=[...Array(6)].map((_,i)=>new Date(base.getFullYear(),base.getMonth(),base.getDate()+i));
+  document.getElementById('rg').textContent=(weekOffset===0?'':'')+(days[0].getMonth()+1)+'/'+days[0].getDate()+' – '+(days[5].getMonth()+1)+'/'+days[5].getDate();
+  const tk=dkey(now);
+  document.getElementById('row').innerHTML=days.map(d=>{const k=dkey(d);let h='';
+    (DATA.byM[k]||[]).forEach(m=>{h+='<div class="m"><span class="lv">'+esc(lvShort(m.lv))+'</span>'+esc(m.ev)+(m.op?'<span class="op">'+esc(m.op)+'</span>':'')+'<small>'+esc(m.st)+' · '+esc(m.loc)+'</small>'+meetLinks(m)+'</div>'});
+    if(!DATA.byM[k])(DATA.byP[k]||[]).forEach(p=>h+='<div class="p">Practice '+esc(p.t)+(p.l?' · <b>'+esc(p.l)+'</b>':'')+'</div>');
+    if(!h)h='<div class="none">No practice</div>';
+    return '<div class="dy'+(k===tk?' today':'')+'"><div class="hd">'+DN[d.getDay()]+'<b>'+(d.getMonth()+1)+'/'+d.getDate()+'</b></div><div>'+h+'</div></div>'}).join('');
+}
+async function bootSchedule(){
+  DATA=await loadSchedule();
+  if(DATA.season)document.getElementById('season').textContent=DATA.season;
+  renderWeek();
+  const today=todayCT();
+  const up=DATA.meets.filter(m=>m.d>=today);
+  document.getElementById('up').innerHTML=up.length?up.slice(0,6).map(meetCard).join(''):'<div class="msg" style="grid-column:1/-1">No upcoming meets posted. Check back soon!</div>';
+  const n=up[0];
+  if(n){const days=Math.round((n.d-today)/864e5);const when=days===0?'Today':days===1?'Tomorrow':DN[n.d.getDay()].charAt(0)+DN[n.d.getDay()].slice(1).toLowerCase()+' '+(n.d.getMonth()+1)+'/'+n.d.getDate();
+    const el=document.getElementById('next');el.hidden=false;
+    el.innerHTML='<small>Next meet'+(days>1?' · in '+days+' days':'')+'</small><h3>'+esc(n.ev)+'</h3><p><span class="when">'+esc(when)+' · '+esc(n.st)+'</span> · '+esc(n.loc)+(n.op?' · '+esc(n.op):'')+'</p>'+meetLinks(n)}
+}
+bootSchedule().catch(()=>{wdRetry('row','Schedule unavailable right now.',bootSchedule);document.getElementById('up').innerHTML=''});
+document.getElementById('prev').onclick=()=>{if(!DATA)return;weekOffset--;renderWeek()};
+document.getElementById('nxt').onclick=()=>{if(!DATA)return;weekOffset++;renderWeek()};
+
+/* ---------- photo slideshow (Photos tab of the schedule sheet) ---------- */
+(async function photos(){
+  const box=document.getElementById('ph'),dots=document.getElementById('dots');
+  const driveId=u=>{u=String(u||'');const m=u.match(/\/d\/([\w-]{10,})/)||u.match(/[?&]id=([\w-]{10,})/);return m?m[1]:(/^[\w-]{25,}$/.test(u)?u:null)};
+  const cands=raw=>{const id=driveId(raw),o=[];if(id)o.push('https://lh3.googleusercontent.com/d/'+id+'=w1600','https://drive.google.com/thumbnail?id='+id+'&sz=w1600');if(raw&&!id)o.push(String(raw));return o};
+  const tryLoad=u=>new Promise(r=>{const im=new Image();const t=setTimeout(()=>r(null),12000);im.onload=()=>{clearTimeout(t);r(u)};im.onerror=()=>{clearTimeout(t);r(null)};im.src=u});
+  const resolve=async raw=>{for(const u of cands(raw)){if(await tryLoad(u))return u}return null};
+  let urls=[];
+  try{const r=await wdLoad(WD.SHEETS.schedule,'Photos','A2:F500');urls=r.filter(x=>(x[3]||x[2])&&!/^(false|no|0)$/i.test(String(x[4]))).map(x=>String(x[3]||x[2]))}catch(e){}
+  for(let i=urls.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[urls[i],urls[j]]=[urls[j],urls[i]]}
+  // show the first photo as soon as it's ready, add the rest as they load
+  const ims=[],ds=[];let cur=0,paused=false;
+  function show(i){if(!ims.length)return;ims[cur].classList.remove('on');ds[cur].classList.remove('on');cur=i;ims[cur].classList.add('on');ds[cur].classList.add('on')}
+  function add(u){const im=document.createElement('img');im.src=u;im.alt='West Delaware girls wrestling photo';box.insertBefore(im,dots);ims.push(im);
+    const b=document.createElement('b');b.onclick=()=>show(ims.indexOf(im));dots.appendChild(b);ds.push(b);if(ims.length===1)show(0);dots.style.display=ims.length>1?'':'none'}
+  await Promise.all(urls.map(async u=>{const ok=await resolve(u);if(ok)add(ok)}));
+  if(!ims.length){const im=document.createElement('img');im.src='img/logo-400.png';im.className='logo on';im.alt='West Delaware Girls Wrestling logo';box.insertBefore(im,dots);dots.style.display='none';return}
+  box.onmouseenter=()=>paused=true;box.onmouseleave=()=>paused=false;
+  setInterval(()=>{if(!paused&&ims.length>1)show((cur+1)%ims.length)},5000);
+})();
+</script>
+</body>
+</html>
