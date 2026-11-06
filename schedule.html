@@ -7,7 +7,7 @@
 <meta name="description" content="2026-27 practice and meet schedule for West Delaware girls wrestling.">
 <link rel="icon" href="favicon.png"><link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@700;800&family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fira+Sans:wght@700;800&family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/site.css">
 <style>
 .bar{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin:22px 0 4px}
@@ -20,11 +20,20 @@
 
 /* month calendars (desktop) */
 .cal{display:flex;flex-direction:column;gap:26px;margin-top:16px}
-.mo{border:2px solid var(--k)}
-.mo h3{margin:0;background:var(--k);color:#fff;font:700 22px var(--f-head);text-transform:uppercase;letter-spacing:1px;padding:8px 12px;display:flex;justify-content:space-between}
-.mo h3 span{color:var(--o);font-size:17px}
+.mo{}
+.mo .grid{border:2px solid var(--k)}
+/* month title bar — matches the printed season calendar */
+.mh{background:var(--k);color:#fff;display:flex;align-items:center;gap:16px;padding:12px 20px;position:relative;overflow:hidden}
+.mh img{width:66px;height:66px;border-radius:50%;flex:none}
+.mh .t1{font:700 21px var(--f-cond);letter-spacing:1.5px;text-transform:uppercase;line-height:1}
+.mh h3{margin:2px 0 0;font:400 40px/1 'Bebas Neue',var(--f-head);letter-spacing:1.5px;color:var(--o)}
+.mh .t2{font:600 12px var(--f-cond);letter-spacing:1.5px;text-transform:uppercase;color:#bbb;margin-top:3px}
+.mh .hk{margin-left:auto;text-align:right;font:400 46px/1 'Bebas Neue',var(--f-head);letter-spacing:3px;color:#5a2408}
+.mh .hk small{display:block;font:700 14px var(--f-cond);letter-spacing:1.5px;color:var(--o);margin-top:4px}
+.stripe{display:flex;height:6px;margin:6px 8px 6px}
+.stripe i{flex:3;background:var(--o)}.stripe b{flex:2;background:var(--k)}
 .grid{display:grid;grid-template-columns:repeat(7,1fr)}
-.dow{background:var(--g);color:#fff;font:700 13px var(--f-cond);text-align:center;padding:3px 0;letter-spacing:1px}
+.dow{background:var(--k);color:#fff;font:700 13px var(--f-cond);text-align:center;padding:3px 0;letter-spacing:1px}
 .d{min-height:96px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:3px 4px;font-size:12px}
 .d:nth-child(7n){border-right:0}.d.x{background:var(--lg)}
 .d .n{font:700 14px var(--f-cond);color:#555}
@@ -105,7 +114,7 @@ function renderCal(){
   const tk=dkey(todayCT());let h='';
   for(let c=new Date(s);c<=e;c=new Date(c.getFullYear(),c.getMonth()+1,1)){
     const cnt=D.meets.filter(m=>m.d.getMonth()===c.getMonth()&&m.d.getFullYear()===c.getFullYear()).length;
-    h+='<div class="mo"><h3>'+MN[c.getMonth()]+' '+c.getFullYear()+'<span>'+cnt+' meet'+(cnt==1?'':'s')+'</span></h3><div class="grid">'+DN.map(x=>'<div class="dow">'+x+'</div>').join('');
+    h+='<div class="mo"><div class="mh"><img src="img/logo-400.png" alt=""><div><div class="t1">West Delaware Girls Wrestling</div><h3>'+MN[c.getMonth()]+' '+c.getFullYear()+'</h3><div class="t2">'+esc(D.season)+' Season Practice &amp; Meet Calendar</div></div><div class="hk">Hawks<small>'+cnt+' meet'+(cnt==1?'':'s')+'</small></div></div><div class="stripe"><i></i><b></b></div><div class="grid">'+DN.map(x=>'<div class="dow">'+x+'</div>').join('');
     const first=c.getDay(),days=new Date(c.getFullYear(),c.getMonth()+1,0).getDate();
     for(let i=0;i<first;i++)h+='<div class="d x"></div>';
     for(let d=1;d<=days;d++){const k=dkey(new Date(c.getFullYear(),c.getMonth(),d));
