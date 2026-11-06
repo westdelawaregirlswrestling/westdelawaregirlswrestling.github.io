@@ -6,7 +6,8 @@ Live at https://westdelawaregirlswrestling.github.io
 
 | What | Sheet (team Google Drive → Team Website) |
 |---|---|
-| Meets, practices, home-page photos | Website Schedule (Live) — tabs *Schedule*, *Practices*, *Photos* |
+| Meets, practices | Website Schedule (Live) — tabs *Schedule*, *Practices* |
+| Home-page photos | Drop images in **Team Website → Website Photos (web)**. The "Website Photo Sync" Apps Script (script.google.com) updates the *Photos* tab every 10 min; set *Active* to FALSE to hide one. |
 | News bar | Website Announcements |
 | Roster & coaches | Website Roster (Live) |
 | Record board | Website Records (Varsity) |
