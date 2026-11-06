@@ -99,7 +99,7 @@
   <div class="wrap">
     <div>
       <h1>West Delaware Girls Wrestling</h1>
-      <p class="sub"><b>Hawks</b> · <span id="season">2026-27</span> Season</p>
+      <p class="sub"><b>Hawks</b></p>
       <div class="next" id="next" hidden></div>
       <div class="cta"><a class="btn" href="schedule.html">Full Schedule</a><a class="btn ghost" href="roster.html">Meet the Team</a></div>
     </div>
@@ -149,7 +149,6 @@ function renderWeek(){
 }
 async function bootSchedule(){
   DATA=await loadSchedule();
-  if(DATA.season)document.getElementById('season').textContent=DATA.season;
   renderWeek();
   const today=todayCT();
   const up=DATA.meets.filter(m=>m.d>=today);
