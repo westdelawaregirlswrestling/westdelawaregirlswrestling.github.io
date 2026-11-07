@@ -12,4 +12,4 @@ Live at https://westdelawaregirlswrestling.github.io
 | Roster & coaches | Website Roster (Live) |
 | Record board | Website Records (Varsity) |
 
-Things that live in this code instead: History page lists (state qualifiers, conference champs, dual records), Youth Wrestling page text, Heja team codes, and the printable-calendar PDF link (`js/site.js`).
+Things that live in this code instead: the home page "Program by the Numbers" tiles (`index.html`, `data-to` values), History page lists (state qualifiers, conference champs, dual records), Youth Wrestling page text, Heja team codes, and the printable-calendar PDF link (`js/site.js`).
