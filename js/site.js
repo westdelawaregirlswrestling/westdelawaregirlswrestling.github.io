@@ -3,7 +3,7 @@
    To change what the site shows, edit the sheets — not this file. */
 const WD = {
   SHEETS: {
-    schedule: '11gFLS-2TfPDow9LB5x8IEwcg7NqMT7hD-MCPHv-jeSg',      // tabs: Schedule, Practices, Photos
+    schedule: '11gFLS-2TfPDow9LB5x8IEwcg7NqMT7hD-MCPHv-jeSg',      // tabs: Schedule, Practices, Photos, Downloads
     roster: '1YU8ODCbLRa97z5nVQYobDwoPxc68M378kueaE_mq-4w',        // tabs: Roster, Coaches
     records: '1ZjVT56bGERcVvKPmyi_LuqBT0p_ICqDKz4bXALoukNc',       // tab: Record Board
     announcements: '1CijrRyTpfl2tcP0sbKcsh_QMGVSQKcBTV5O0eFaMt1I'  // tab: Announcements

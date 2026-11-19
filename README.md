@@ -8,6 +8,7 @@ Live at https://westdelawaregirlswrestling.github.io
 |---|---|
 | Meets, practices | Website Schedule (Live) — tabs *Schedule*, *Practices* |
 | Home-page photos | Drop images in **Team Website → Website Photos (web)**. The "Website Photo Sync" Apps Script (script.google.com) updates the *Photos* tab every 10 min; set *Active* to FALSE to hide one. |
+| Meet info PDFs | Drop a PDF in **Team Website → Website Downloads**. The "Website Downloads Sync" Apps Script updates the *Downloads* tab of Website Schedule (Live) every 10 min. Edit *Title* / *Date* / *End date* there, or set *Active* to FALSE to hide one. After the meet date, the handout moves to Past meets on the Parents & Athletes page. |
 | News bar | Website Announcements |
 | Roster & coaches | Website Roster (Live) |
 | Record board | Website Records (Varsity) |
