@@ -135,6 +135,14 @@
 <div class="hdr"><div class="wrap"><h1>Parents &amp; Athletes</h1></div></div>
 
 <main class="wrap">
+  <div class="sec" id="downloads">Downloads</div>
+  <p class="dl-intro">Parent and athlete handouts for each meet, newest at the top. After a meet is over, its handout moves into Past meets.</p>
+  <div id="dl-upcoming" class="dl-list"><p class="dl-empty">Loading…</p></div>
+  <details class="dl-past" id="dl-past" hidden>
+    <summary>Past meets <span id="dl-past-count"></span></summary>
+    <div id="dl-past-list" class="dl-list"></div>
+  </details>
+
   <div class="sec">Team App</div>
   <div class="hj"><img class="ic" src="img/heja-icon.png" alt="Heja app icon">
     <div><div class="who">High School Team</div><h2>Team App: <span>Heja</span></h2>
@@ -163,14 +171,6 @@
       <p class="help"><img src="img/bound-chat.svg" alt="" width="34" height="34"><span><strong>Need help?</strong> On the Bound site, click the green chat bubble to message their support team.</span></p>
     </div>
   </div>
-
-  <div class="sec" id="downloads">Downloads</div>
-  <p class="dl-intro">Parent and athlete handouts for each meet, newest at the top. After a meet is over, its handout moves into Past meets.</p>
-  <div id="dl-upcoming" class="dl-list"><div class="msg">Loading…</div></div>
-  <details class="dl-past" id="dl-past" hidden>
-    <summary>Past meets <span id="dl-past-count"></span></summary>
-    <div id="dl-past-list" class="dl-list"></div>
-  </details>
 
 </main>
 <footer class="foot" id="foot"></footer>
@@ -239,7 +239,7 @@ function renderDownloads(items){
   items.forEach(it=>{if(isPastMeet(it,today))past.push(it);else current.push(it)});
   const byDate=(a,b)=>(parseDate(b.start)||0)-(parseDate(a.start)||0);
   current.sort(byDate); past.sort(byDate);
-  up.innerHTML=current.length?current.map(dlCard).join(''):'<p class="dl-empty">No upcoming meet handouts posted right now.</p>';
+  up.innerHTML=current.length?current.map(dlCard).join(''):'<p class="dl-empty">No meet handouts posted right now.</p>';
   if(past.length){
     pastList.innerHTML=past.map(dlCard).join('');
     pastCount.textContent='('+past.length+')';
