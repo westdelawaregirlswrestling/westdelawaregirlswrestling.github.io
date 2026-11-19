@@ -54,6 +54,38 @@
   .steps .two{grid-template-columns:1fr}
   .bnd .btn{display:block;text-align:center}
 }
+
+/* Downloads / Meet Info — same page flow as the sections above, not a boxed-off module */
+.dl-intro{margin:0 0 10px;font-size:16px;color:#333}
+.dl-note{margin:0 0 18px;padding:10px 14px;background:var(--tint);border-left:4px solid var(--o);font-size:14px;color:#555}
+.dl-list{display:flex;flex-direction:column}
+.dl{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:16px 0;border-bottom:1px solid var(--line)}
+.dl-list .dl:first-child{border-top:1px solid var(--line)}
+.dl-ic{flex:none;width:40px;height:40px;color:var(--o);display:flex;align-items:center;justify-content:center}
+.dl-ic svg{width:32px;height:32px;display:block}
+.dl-info{flex:1;min-width:0}
+.dl-info h3{margin:0;font:700 20px/1.25 var(--f-head);color:var(--k);text-transform:none;letter-spacing:0}
+.dl-info p{margin:4px 0 0;font:600 15px var(--f-cond);letter-spacing:.8px;text-transform:uppercase;color:var(--muted)}
+.dl-ex{display:inline-block;margin:6px 0 0;background:var(--tint);color:var(--o);font:700 11px var(--f-cond);letter-spacing:1.2px;text-transform:uppercase;padding:2px 7px;border-radius:2px}
+.dl-actions{display:flex;gap:8px;flex:none;align-items:center}
+.dl .btn{font-size:14px;padding:10px 16px;letter-spacing:.8px;box-shadow:0 1px 3px rgba(0,0,0,.18)}
+.dl-empty{padding:8px 0 4px;color:#666;font-size:15px}
+.dl-past{margin:12px 0 0}
+.dl-past summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px;padding:14px 0 12px;font:700 16px var(--f-cond);letter-spacing:1px;text-transform:uppercase;color:var(--muted);user-select:none}
+.dl-past summary::-webkit-details-marker{display:none}
+.dl-past summary:before{content:"▸";color:var(--o);font-size:15px;line-height:1;width:1em;text-align:center}
+.dl-past[open] summary:before{content:"▾"}
+.dl-past summary:hover{color:var(--k)}
+.dl-past .dl{opacity:.92}
+@media(max-width:640px){
+  .dl{flex-wrap:wrap;align-items:flex-start;gap:8px 12px;padding:14px 0}
+  .dl-ic{width:32px;height:32px}
+  .dl-ic svg{width:26px;height:26px}
+  .dl-info{flex:1;min-width:calc(100% - 50px)}
+  .dl-info h3{font-size:17px}
+  .dl-actions{flex:1 1 100%;display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}
+  .dl .btn{text-align:center;padding:11px 12px}
+}
 </style>
 <script type="application/ld+json">
 {
@@ -134,6 +166,15 @@
     </div>
   </div>
 
+  <div class="sec" id="downloads">Downloads</div>
+  <p class="dl-intro">Parent and athlete handouts for each meet, newest at the top. After a meet is over, its handout moves into Past meets.</p>
+  <p class="dl-note" id="dl-note">Preview: this list is a mock-up so you can see the layout. Once it goes live, dropping a PDF into a Drive folder will put it here automatically.</p>
+  <div id="dl-upcoming" class="dl-list"><div class="msg">Loading…</div></div>
+  <details class="dl-past" id="dl-past" hidden>
+    <summary>Past meets <span id="dl-past-count"></span></summary>
+    <div id="dl-past-list" class="dl-list"></div>
+  </details>
+
 </main>
 <footer class="foot" id="foot"></footer>
 
@@ -141,5 +182,92 @@
 <script>
 document.getElementById('code').onclick=()=>{try{navigator.clipboard.writeText('VY-431905').then(()=>{document.getElementById('cp').textContent='COPIED!'})}catch(e){}};
 </script>
+
+<script>
+/* Preview uses local mock data. After approval, set DL_PREVIEW to false and
+   the section will read a Downloads tab via wdLoad, same pattern as Photos. */
+const DL_PREVIEW = true;
+const DL_PDF = 'downloads/WD_Girls_Wrestling_Independence_Invitational_Info.pdf';
+const MOCK_DOWNLOADS = [
+  {title:'Cliff Keen Independence Girls Invitational - Parent & Athlete Info', start:'2026-11-20', end:'2026-11-21', url:DL_PDF, file:'WD_Girls_Wrestling_Independence_Invitational_Info.pdf', active:true},
+  {title:'Example (past meet) - Parent & Athlete Info', start:'2026-11-07', end:'2026-11-07', url:DL_PDF, file:'WD_Girls_Wrestling_Independence_Invitational_Info.pdf', active:true, example:true}
+];
+const DL_ICON = '<span class="dl-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3.5h7.2L20 9.3V20.5a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1z"/><path d="M14 3.5V9h5.5"/><path d="M9.2 14.2h5.6M9.2 17.4h3.8"/></svg></span>';
+
+function shortDay(d){return DN[d.getDay()].charAt(0)+DN[d.getDay()].slice(1).toLowerCase()}
+function shortMon(d){return MN[d.getMonth()].slice(0,3)}
+function fmtMeetDates(start,end){
+  const a=parseDate(start), b=end?parseDate(end):null;
+  if(!a)return '';
+  const same=b&&!isNaN(b)&&(a.getTime()!==b.getTime());
+  if(!same)return shortDay(a)+', '+shortMon(a)+' '+a.getDate()+', '+a.getFullYear();
+  if(a.getFullYear()===b.getFullYear()&&a.getMonth()===b.getMonth())
+    return shortDay(a)+', '+shortMon(a)+' '+a.getDate()+' – '+shortDay(b)+', '+shortMon(b)+' '+b.getDate()+', '+b.getFullYear();
+  if(a.getFullYear()===b.getFullYear())
+    return shortDay(a)+', '+shortMon(a)+' '+a.getDate()+' – '+shortDay(b)+', '+shortMon(b)+' '+b.getDate()+', '+b.getFullYear();
+  return shortDay(a)+', '+shortMon(a)+' '+a.getDate()+', '+a.getFullYear()+' – '+shortDay(b)+', '+shortMon(b)+' '+b.getDate()+', '+b.getFullYear();
+}
+function isPastMeet(item,today){
+  const end=parseDate(item.end)||parseDate(item.start);
+  return !!(end&&end<today);
+}
+function driveIdFrom(item){
+  if(item.id)return String(item.id);
+  const u=String(item.url||'');
+  const m=u.match(/\/d\/([\w-]{10,})/)||u.match(/[?&]id=([\w-]{10,})/);
+  return m?m[1]:'';
+}
+function dlButtons(item){
+  const id=driveIdFrom(item);
+  const view=item.url||(id?'https://drive.google.com/file/d/'+id+'/view':'');
+  const down=id?'https://drive.google.com/uc?export=download&id='+id:view;
+  const name=item.file||'meet-info.pdf';
+  const dlAttr=id?'':' download="'+esc(name)+'"';
+  return '<div class="dl-actions">'+
+    '<a class="btn ghost" href="'+esc(view)+'" target="_blank" rel="noopener">View</a>'+
+    '<a class="btn" href="'+esc(down)+'"'+dlAttr+'>Download</a>'+
+    '</div>';
+}
+function dlCard(item){
+  return '<article class="dl">'+DL_ICON+'<div class="dl-info"><h3>'+esc(item.title)+'</h3><p>'+esc(fmtMeetDates(item.start,item.end))+'</p>'+
+    (item.example?'<span class="dl-ex">Preview example</span>':'')+
+    '</div>'+dlButtons(item)+'</article>';
+}
+function rowsToItems(rows){
+  /* Downloads tab columns (row 1 headers, data from A2):
+     A File id, B File name, C Title, D Date, E End date, F URL, G Active, H Added */
+  return rows.filter(r=>(r[5]||r[0])&&!/^(false|no|0)$/i.test(String(r[6]))).map(r=>({
+    id:String(r[0]||''), file:String(r[1]||''), title:String(r[2]||r[1]||'Meet info'),
+    start:r[3], end:r[4], url:String(r[5]||''), added:r[7]
+  }));
+}
+function renderDownloads(items){
+  const up=document.getElementById('dl-upcoming');
+  const pastWrap=document.getElementById('dl-past');
+  const pastList=document.getElementById('dl-past-list');
+  const pastCount=document.getElementById('dl-past-count');
+  const today=todayCT();
+  const current=[], past=[];
+  items.forEach(it=>{if(isPastMeet(it,today))past.push(it);else current.push(it)});
+  const byDate=(a,b)=>(parseDate(b.start)||0)-(parseDate(a.start)||0);
+  current.sort(byDate); past.sort(byDate);
+  up.innerHTML=current.length?current.map(dlCard).join(''):'<p class="dl-empty">No upcoming meet handouts posted right now.</p>';
+  if(past.length){
+    pastList.innerHTML=past.map(dlCard).join('');
+    pastCount.textContent='('+past.length+')';
+    pastWrap.hidden=false;
+  }else{
+    pastWrap.hidden=true;
+  }
+}
+function loadDownloads(){
+  const up=document.getElementById('dl-upcoming');
+  if(DL_PREVIEW){renderDownloads(MOCK_DOWNLOADS);return}
+  wdLoad(WD.SHEETS.schedule,'Downloads','A2:H200').then(rows=>renderDownloads(rowsToItems(rows)))
+    .catch(()=>wdRetry(up,'Downloads unavailable right now.',loadDownloads));
+}
+loadDownloads();
+</script>
+
 </body>
 </html>

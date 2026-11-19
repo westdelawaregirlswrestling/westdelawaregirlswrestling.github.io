@@ -111,13 +111,21 @@ function initTicker(){
 const PAGES=[['index.html','Home'],['schedule.html','Schedule'],['history.html','History'],['roster.html','Roster'],['parents.html','Parents & Athletes'],['youth.html','Youth Wrestling']];
 function initChrome(){
   const here=(location.pathname.split('/').pop()||'index.html');
-  const links=PAGES.map(([h,t])=>'<a href="'+h+'"'+(h===here?' aria-current="page"':'')+'>'+t+'</a>').join('');
+  const links=PAGES.map(([h,t])=>{
+    let a='<a href="'+h+'"'+(h===here?' aria-current="page"':'')+'>'+t+'</a>';
+    if(h==='parents.html'){
+      const href=here==='parents.html'?'#downloads':'parents.html#downloads';
+      a+='<a class="nav-jump" href="'+href+'">Downloads</a>';
+    }
+    return a;
+  }).join('');
   const top=document.getElementById('top');
   if(top)top.innerHTML='<div class="wrap"><a class="brand" href="index.html"><img src="img/logo-400.png" alt=""><span>West Delaware<b>Girls Wrestling</b></span></a>'+
     '<button class="menu" aria-label="Menu" aria-expanded="false"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>'+
     '<nav class="nav">'+links+'</nav></div>';
   const btn=top&&top.querySelector('.menu'),nav=top&&top.querySelector('.nav');
   if(btn)btn.onclick=()=>{const o=nav.classList.toggle('open');btn.setAttribute('aria-expanded',o)};
+  if(nav)nav.addEventListener('click',e=>{if(e.target.closest('a')&&nav.classList.contains('open')){nav.classList.remove('open');if(btn)btn.setAttribute('aria-expanded','false')}});
   const ft=document.getElementById('foot');
   if(ft)ft.innerHTML='<div class="wrap"><img src="img/logo-400.png" alt=""><div><b>West Delaware Girls Wrestling</b><br>Hawks · Manchester, Iowa</div><nav>'+PAGES.map(([h,t])=>'<a href="'+h+'">'+t+'</a>').join('')+'</nav></div>';
   initTicker();
