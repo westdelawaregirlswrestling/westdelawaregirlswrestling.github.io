@@ -136,7 +136,7 @@
 
 <main class="wrap">
   <div class="sec" id="downloads">Downloads</div>
-  <p class="dl-intro">Parent and athlete handouts for each meet, newest at the top. After a meet is over, its handout moves into Past meets.</p>
+  <p class="dl-intro">Parent and athlete meet information.</p>
   <div id="dl-upcoming" class="dl-list"><p class="dl-empty">Loading…</p></div>
   <details class="dl-past" id="dl-past" hidden>
     <summary>Past meets <span id="dl-past-count"></span></summary>
@@ -237,8 +237,9 @@ function renderDownloads(items){
   const today=todayCT();
   const current=[], past=[];
   items.forEach(it=>{if(isPastMeet(it,today))past.push(it);else current.push(it)});
-  const byDate=(a,b)=>(parseDate(b.start)||0)-(parseDate(a.start)||0);
-  current.sort(byDate); past.sort(byDate);
+  const bySoonest=(a,b)=>(parseDate(a.start)||Infinity)-(parseDate(b.start)||Infinity);
+  const byRecent=(a,b)=>(parseDate(b.end)||parseDate(b.start)||0)-(parseDate(a.end)||parseDate(a.start)||0);
+  current.sort(bySoonest); past.sort(byRecent);
   up.innerHTML=current.length?current.map(dlCard).join(''):'<p class="dl-empty">No meet handouts posted right now.</p>';
   if(past.length){
     pastList.innerHTML=past.map(dlCard).join('');
