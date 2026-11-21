@@ -22,13 +22,13 @@
 <style>
 .rg{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
 .ac{border:2px solid var(--k);display:flex;align-items:stretch}
-.ac .gr{background:var(--o);color:#fff;font:800 28px var(--f-head);min-width:58px;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:.95}
+.ac .gr{background:var(--o);color:#fff;font:800 28px var(--f-head);width:58px;min-width:58px;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:.95;padding:8px 4px;box-sizing:border-box}
 .ac .gr small{font:700 11px var(--f-cond);letter-spacing:1px}
+.ac .gr .gw{font:700 13px var(--f-cond);letter-spacing:.4px;margin-top:3px;min-height:15px;line-height:1}
 .ac.staff .gr{background:var(--g)}
 .ac .in{padding:8px 10px}
 .ac h4{margin:0;font:700 20px var(--f-cond)}
 .ac .rl{font:500 13px var(--f-cond);color:#666;letter-spacing:1.5px;text-transform:uppercase}
-.wt{display:inline-block;background:var(--k);color:#fff;font:700 13px var(--f-cond);padding:0 6px;margin-left:6px;vertical-align:2px}
 .co{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
 .cc{background:var(--k);color:#fff;padding:12px 14px;border-left:6px solid var(--o)}
 .cc h4{margin:0;font:700 21px var(--f-cond)}
@@ -103,7 +103,7 @@ async function boot(){
   c.forEach(x=>x.forEach(addC));
   const yr=g=>({12:'SR',11:'JR',10:'SO',9:'FR'}[g]||'GR');
   const cap=s=>String(s).toLowerCase().replace(/\b\w/g,m=>m.toUpperCase());
-  const card=(x,st)=>'<div class="ac'+(st?' staff':'')+'"><div class="gr">'+esc(x[1])+'<small>'+(st?'GRADE':yr(+x[1]))+'</small></div><div class="in"><h4>'+esc(x[0])+(x[3]?'<span class="wt">'+esc(x[3])+'</span>':'')+'</h4><div class="rl">'+esc(cap(x[2]).replace('Stats/video','Stats / Video'))+'</div></div></div>';
+  const card=(x,st)=>'<div class="ac'+(st?' staff':'')+'"><div class="gr">'+esc(x[1])+'<small>'+(st?'GRADE':yr(+x[1]))+'</small><span class="gw">'+(x[3]?esc(x[3]):'')+'</span></div><div class="in"><h4>'+esc(x[0])+'</h4><div class="rl">'+esc(cap(x[2]).replace('Stats/video','Stats / Video'))+'</div></div></div>';
   const w=ppl.filter(x=>/wrestler/i.test(x[2])),s=ppl.filter(x=>!/wrestler/i.test(x[2]));
   let h='<div class="sec">Wrestlers <small>'+w.length+'</small></div><div class="rg">'+w.map(x=>card(x)).join('')+'</div>';
   if(s.length)h+='<div class="sec">Stats, Video &amp; Managers</div><div class="rg">'+s.map(x=>card(x,1)).join('')+'</div>';
