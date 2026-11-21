@@ -112,12 +112,7 @@ const PAGES=[['index.html','Home'],['schedule.html','Schedule'],['history.html',
 function initChrome(){
   const here=(location.pathname.split('/').pop()||'index.html');
   const links=PAGES.map(([h,t])=>{
-    let a='<a href="'+h+'"'+(h===here?' aria-current="page"':'')+'>'+t+'</a>';
-    if(h==='parents.html'){
-      const href=here==='parents.html'?'#downloads':'parents.html#downloads';
-      a+='<a class="nav-jump" href="'+href+'">Downloads</a>';
-    }
-    return a;
+    return '<a href="'+h+'"'+(h===here?' aria-current="page"':'')+'>'+t+'</a>';
   }).join('');
   const top=document.getElementById('top');
   if(top)top.innerHTML='<div class="wrap"><a class="brand" href="index.html"><img src="img/logo-400.png" alt=""><span>West Delaware<b>Girls Wrestling</b></span></a>'+

@@ -95,10 +95,5 @@ a{color:var(--o)}
 .foot nav a:hover{color:var(--o)}
 .note-live{font:500 13px var(--f-cond);color:#777;letter-spacing:1px;text-transform:uppercase;text-align:center;margin-top:18px}
 
-/* Downloads is an in-page jump on Parents & Athletes, shown in the hamburger only */
-.nav a.nav-jump{display:none}
-@media(max-width:860px){
-  .nav a.nav-jump{display:block;padding-left:calc(var(--gut) + 16px);color:#ddd}
-}
 #downloads{scroll-margin-top:84px}
 @media(max-width:860px){#downloads{scroll-margin-top:88px}}
