@@ -22,10 +22,11 @@
 <style>
 .rg{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
 .ac{border:2px solid var(--k);display:flex;align-items:stretch}
-.ac .gr{width:58px;min-width:58px;display:flex;flex-direction:column;color:#fff;box-sizing:border-box}
+.ac .gr{width:58px;min-width:58px;min-height:78px;display:flex;flex-direction:column;color:#fff;box-sizing:border-box}
 .ac .gr .gg{background:var(--o);font:800 28px var(--f-head);line-height:.9;flex:1;display:flex;align-items:center;justify-content:center;padding:8px 4px 6px}
 .ac .gr .gw{background:var(--k);font:800 20px var(--f-head);line-height:1;min-height:28px;display:flex;align-items:center;justify-content:center;padding:5px 3px}
-.ac.staff .gr .gg{background:var(--g)}
+.ac.staff .gr .gg{background:var(--g);padding:8px 4px}
+.ac.staff .gr .gw{display:none}
 .ac .in{padding:10px 14px;display:flex;flex-direction:column;justify-content:center;flex:1;min-width:0}
 .ac h4{margin:0;font:700 23px var(--f-cond);line-height:1.1}
 .ac .rl{font:600 15px var(--f-cond);color:#555;letter-spacing:1.2px;text-transform:uppercase;margin-top:3px}
@@ -102,7 +103,7 @@ async function boot(){
     const wt=v.find((y,i)=>i>ri&&/^\d{2,3}(\s*lbs?)?$/i.test(y))||'';ppl.push([nm,g,v[ri],wt])});
   c.forEach(x=>x.forEach(addC));
   const cap=s=>String(s).toLowerCase().replace(/\b\w/g,m=>m.toUpperCase());
-  const card=(x,st)=>'<div class="ac'+(st?' staff':'')+'"><div class="gr"><span class="gg">'+esc(x[1])+'</span><span class="gw">'+(x[3]?esc(x[3]):'')+'</span></div><div class="in"><h4>'+esc(x[0])+'</h4><div class="rl">'+esc(cap(x[2]).replace('Stats/video','Stats / Video'))+'</div></div></div>';
+  const card=(x,st)=>'<div class="ac'+(st?' staff':'')+'"><div class="gr"><span class="gg">'+esc(x[1])+'</span>'+(st?'':'<span class="gw">'+(x[3]?esc(x[3]):'')+'</span>')+'</div><div class="in"><h4>'+esc(x[0])+'</h4><div class="rl">'+esc(cap(x[2]).replace('Stats/video','Stats / Video'))+'</div></div></div>';
   const w=ppl.filter(x=>/wrestler/i.test(x[2])),s=ppl.filter(x=>!/wrestler/i.test(x[2]));
   let h='<div class="sec">Wrestlers <small>'+w.length+'</small></div><div class="rg">'+w.map(x=>card(x)).join('')+'</div>';
   if(s.length)h+='<div class="sec">Stats, Video &amp; Managers</div><div class="rg">'+s.map(x=>card(x,1)).join('')+'</div>';
